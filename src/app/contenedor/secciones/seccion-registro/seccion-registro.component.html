@@ -1,0 +1,48 @@
+<form [formGroup]="miFormulario" class="login100-form m-b-50" (ngSubmit)="addseccion()" autocomplete="off">
+
+    <span class="login100-form-title p-b-49">
+        Nueva Sección
+    </span>
+
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Nombre</span>
+        <input formControlName="nombre" class="input100" type="text" name="nombre" placeholder="Ingrese el nombre de la seccion">
+        <span class="focus-input100"></span>
+    </div>
+
+    <!-- <div class="wrap-input100 m-b-23 row">
+        <span class="label-input100">Curso</span>
+        <select formControlName="curso" class="form-select" name="" id="">
+            <option disabled value="null">Escoja un curso</option>
+            <option *ngFor="let item of cursos()" [value]="item._id">{{item.nombre}} | <span>{{item.profesor.nombre}}</span></option>
+            
+        </select>
+        <span class="focus-input100"></span>
+    </div> -->
+
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Numero de alumnos</span>
+        <input formControlName="limite" class="input100" type="number" name="alumnosmax" min="1" max="100" placeholder="Ingrese el numero maximo de alumnos">
+        <span class="focus-input100"></span>
+    </div>
+    <!-- <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Descripcion</span>
+        <input formControlName="especialidad" class="input100" type="text" name="telefono" placeholder="Ingrese su especialidad">
+        <span class="focus-input100"></span>
+    </div> -->
+
+    <div class="text-right p-t-8 p-b-31"></div>
+
+
+
+    <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" [disabled]="miFormulario.invalid">
+                Registrar
+            </button>
+        </div>
+    </div>
+
+
+</form>

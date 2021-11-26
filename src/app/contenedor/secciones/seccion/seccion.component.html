@@ -1,0 +1,117 @@
+<div class="login100-form m-b-50">
+    <h1 class="login100-form-title m-b-49">Sección: {{secc.nombre|titlecase}}</h1>
+
+    <div class="wrap-input100 m-b-23">
+
+        <!-- agregar cursdo -->
+        <div class="wrap-input100 m-b-23 row">
+            <span class="label-input100">Agregar Curso</span>
+            <select [(ngModel)]="newcurso" class=" col-8" name="" id="">
+                <option disabled  value=''>Escoja un curso</option>
+                <option *ngFor="let item of CursoTotal" [value]="item._id">{{item.nombre}} | <span>{{item.profesor.nombre}}</span></option>
+                
+            </select>
+            <button mat-button (click)="addCurso()" class="col">Agregar</button>
+            <!-- <span class="focus-input100"></span> -->
+        </div>
+        <div *ngIf="ok==true" class="alert-success text-center">
+            <span class="text-center">{{msg}}</span>
+        </div>
+        <div *ngIf="!ok" class="alert-danger text-center">
+            <span class="text-center">{{msg}}</span>
+        </div>
+        <h2 class="label-input100">N° Cursos: {{secc.curso.length||'No hay ningun curso'}} </h2>
+        <!-- table -->
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Profesor</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de Fin</th>
+
+                    <th colspan="2">Funciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of curso; let i=index">
+                    <th>
+                        {{item.nombre|titlecase}}</th>
+                    <th>{{item.profesor.nombre|titlecase}} {{item.profesor.apellido|titlecase}}</th>
+                    <th> {{item.horaI}}</th>
+                    <th>{{item.horaF}}</th>
+                    <th> <button (click)="deleteC(item._id)"> <mat-icon>delete</mat-icon> </button> </th>
+                    <th> <button *ngIf="verificarHora(i)" [routerLink]="['/Menu/Cursos/',item._id]"> <mat-icon>build</mat-icon> </button> </th>
+                    <th class="alert-warning ">{{verificarHora(i)}}
+
+                    </th>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+    <div class="wrap-input100 m-b-23">
+
+        <!-- agregar cursdo -->
+        <div class="wrap-input100 m-b-23 row">
+            <span class="label-input100">Agregar Alumno</span>
+            <select [(ngModel)]="newAlumno" class=" col-8" name="" id="">
+        <option disabled value="">Escoja un alumno</option>
+        <option *ngFor="let item of alumnosT()" [value]="item._id">{{item.nombre|titlecase}} | <span>{{item.apellido|titlecase}}</span></option>
+        
+    </select>
+            <button mat-button (click)="addAlumno()" class="col">Agregar</button>
+            <!-- <span class="focus-input100"></span> -->
+        </div>
+        <div *ngIf="ok1==true" class="alert-success text-center">
+            <span class="text-center">{{msg1}}</span>
+        </div>
+        <div *ngIf="!ok1" class="alert-danger text-center">
+            <span class="text-center">{{msg1}}</span>
+        </div>
+        <h2 class="label-input100">N° Alumnos: {{secc.alumno.length||'0'}} / {{secc.limite}}</h2>
+        <!-- table -->
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Alumno</th>
+                    <th>DNI</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th colspan="2">Funciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of alumnos">
+                    <th>{{item.apellido|titlecase}} {{item.nombre|titlecase}}</th>
+
+                    <th>{{item.dni}}</th>
+                    <th>{{item.telefono}}</th>
+                    <th>{{item.email}}</th>
+                    <th> <button (click)="deleteA(item._id)">delete</button> </th>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
+
+<div class="float-end">
+    <button class="btn btn-outline-danger mb-5 " (click)="delete(secc._id)">Eliminar Sección</button>
+</div>
+
+
+<!-- <div>
+    <pre>
+
+        {{curso|json}}
+    </pre>
+</div> -->

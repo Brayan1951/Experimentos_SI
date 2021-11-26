@@ -1,0 +1,60 @@
+<form [formGroup]="miFormulario" (ngSubmit)="register()" class="login100-form" autocomplete="off">
+
+    <span class="login100-form-title p-b-49">
+        Nuevo usuario
+    </span>
+
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Nombre</span>
+        <input formControlName="nombre" class="input100" type="text" name="nombre" placeholder="Ingrese tu nombre">
+        <span *ngIf="campoNoValido('nombre')" class="form-text text-danger">Debe rellenar el campo nombre</span>
+    </div>
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Dni</span>
+        <input formControlName="dni" class="input100" type="number" name="dni" minlength="8" maxlength="8" placeholder="Ingrese tu dni">
+        <span *ngIf="campoNoValido('dni')" class="form-text text-danger">Debe rellenar el campo DNI (8 digitos)</span>
+    </div>
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Teléfono</span>
+        <input formControlName="telefono" class="input100" type="tel" name="telefono" minlength="9" maxlength="9" placeholder="Ingrese tu teléfono">
+        <span *ngIf="campoNoValido('telefono')" class="form-text text-danger">Debe rellenar el campo teléfono (9 digitps)</span>
+    </div>
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Email</span>
+        <input formControlName="email" class="input100" type="email" name="email" placeholder="Ingrese su email">
+        <span *ngIf="campoNoValido('email')" class="form-text text-danger">Debe rellenar el campo email</span>
+    </div>
+
+    <div class="wrap-input100  m-b-23">
+        <span class="label-input100">Password</span>
+        <input formControlName="password" class="input100" type="password" name="password" placeholder="Ingrese su contraseña">
+        <span *ngIf="campoNoValido('password')" class="form-text text-danger">Debe rellenar el campo password con un tamaño de 6 digitos</span> <br>
+        <span *ngIf="password()" class="form-text text-danger">Debe contar almenos con una letra y un numero </span>
+    </div>
+    <!-- <div class="wrap-input100  m-b-23">
+        <span class="label-input100">Confirmar Password</span>
+        <input formControlName="password" class="input100" type="password" name="password" placeholder="Ingrese de nuevo para confirmar">
+        <span class="focus-input100"></span>
+    </div> -->
+
+    <div class="text-right p-t-8 p-b-31"></div>
+
+    <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" type="submit" [disabled]="miFormulario.invalid && password()">
+                Registrar
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-col-c p-t-60">
+        <span class="txt1 p-b-17">
+            ¿Ya tienes cuenta?
+        </span>
+
+        <a routerLink="/Auth/login" class="txt2">
+            Ingresa aquí
+        </a>
+    </div>
+</form>

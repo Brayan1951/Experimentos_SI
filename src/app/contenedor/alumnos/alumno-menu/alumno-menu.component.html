@@ -1,0 +1,58 @@
+<!-- campo de  Busqueda -->
+<div class="mb-3 row">
+
+    <div class="col-sm-6">
+        <!-- <label for="">Buscar por nombre:</label> -->
+        <input [(ngModel)]="busqueda" (keyup.enter)="find()" type="text" class="form-control" placeholder="Buscar por Nombre del Alumno">
+    </div>
+    <button mat-button (click)="find()" class="col-sm-2"><mat-icon>search</mat-icon>Buscar</button>
+    <button mat-button [routerLink]="['./Agregar']" class="col">Agregar Alumnos <mat-icon>add</mat-icon> </button>
+</div>
+
+<div *ngIf="ok==true" class="alert-success text-center">
+    <span class="text-center">{{msg}}</span>
+</div>
+<div *ngIf="!ok" class="alert-danger text-center">
+    <span class="text-center">{{msg}}</span>
+</div>
+<!-- <mat-divider></mat-divider> -->
+<div *ngIf="alumnos().length===0" class="alert-warning">
+    <h2 class="text-center mb-2">No hay alumnos por mostrar</h2>
+
+</div>
+
+
+
+<div class="m-auto">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Gustos</th>
+                <th colspan="2">Funciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of alumnos()">
+
+
+                <th>{{item.nombre|titlecase}}</th>
+                <th>{{item.apellido|titlecase}}</th>
+                <th>{{item.dni}}</th>
+                <th>{{item.telefono}}</th>
+                <th>{{item.email}}</th>
+                <th>{{item.gusto}}</th>
+                <th> <button mat-button (click)="delete(item._id)">Delete</button> </th>
+                <th> <button mat-button [routerLink]="['/Menu/Alumnos/',item._id]">Actualizar</button> </th>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>

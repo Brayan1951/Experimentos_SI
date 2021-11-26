@@ -1,0 +1,57 @@
+<form (ngSubmit)="actualizar()" class="login100-form" autocomplete="off">
+
+    <span class="login100-form-title p-b-49">
+        Actualizar alumno
+    </span>
+
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Nombre</span>
+        <input [(ngModel)]="alumno.nombre" class="input100" type="text" name="nombre" placeholder="Ingrese tu nombre" required>
+        <!-- <span *ngIf="campoNoValido('nombre')" class="form-text text-danger">Debe Ingresar un nombre con minimo 3 caracteres</span> -->
+    </div>
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Apellido</span>
+        <input [(ngModel)]="alumno.apellido" class="input100" type="text" name="apellido" placeholder="Ingrese tu apellido" required>
+        <!-- <span *ngIf="campoNoValido('apellido')" class="form-text text-danger">Debe Ingresar un Apellido con minimo 3 caracteres</span> -->
+    </div>
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">DNI</span>
+        <input [(ngModel)]="alumno.dni" class="input100" type="number" name="dni" minlength="8" maxlength="8" min="10000000" max="99999999" placeholder="Ingrese tu dni" required>
+        <!-- <span *ngIf="campoNoValido('dni')" class="form-text text-danger">Debe rellnar el campo DNI (8 Digitos)</span> -->
+    </div>
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Teléfono</span>
+        <input [(ngModel)]="alumno.telefono" class="input100" type="tel" name="telefono" minlength="9" maxlength="9" placeholder="Ingrese tu telefono" required>
+        <!-- <span *ngIf="campoNoValido('telefono')" class="form-text text-danger">Debe rellnar el campo Telefono (9 Digitos)</span> -->
+    </div>
+
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Email</span>
+        <input [(ngModel)]="alumno.email" class="input100" type="email" name="email" placeholder="Ingrese su email" required>
+        <!-- <span *ngIf="campoNoValido('email')" class="form-text text-danger">Debe rellenar el campo email </span> -->
+    </div>
+
+    <div class="wrap-input100 m-b-23">
+        <span class="label-input100">Gusto</span>
+        <input [(ngModel)]="alumno.gusto" class="input100" type="text" name="gusto" placeholder="Ingrese su especialidad" required>
+
+        <!-- <span *ngIf="campoNoValido('especialidad')" class="form-text text-danger">Debe rellnar el campo Especialidad</span> -->
+    </div>
+    <div *ngIf="!validacion()" class="my-1">
+
+        <div class="alert-danger text-center my-2" *ngFor="let item of mensaje; let i=index">
+            {{mensaje[i]}}
+        </div>
+    </div>
+
+    <div class="container-login100-form-btn m-b-30">
+        <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" [disabled]="!validacion()" type="submit">
+                Actualizar
+            </button>
+        </div>
+    </div>
+
+
+</form>
